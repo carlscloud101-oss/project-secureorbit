@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mission-dashboard
+
+spec:
+  replicas: 3 # This ensures 3 copies of your app are always running
+
+  selector:
+    matchLabels:
+      app: gds-app
+
+  template:
+    metadata:
+      labels:
+        app: gds-app
+
+    spec:
+      containers:
+        - name: dashboard
+          image: 891612552103.dkr.ecr.us-east-1.amazonaws.com/gds-app:latest
+
+          ports:
+            - containerPort: 80
